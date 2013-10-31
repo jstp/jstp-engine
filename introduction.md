@@ -5,43 +5,51 @@
 Introduction
 ============
 
-The JSTP Engine is a running instance of an actual implementation of JSTP. Applications can run several Engines listening in an arbitrary amount of ports in several Transport Protocols. This flexibility is one of the features of JSTP.
+> The JSTP Engine is a running instance of an actual implementation of JSTP. Applications can run several Engines listening in an arbitrary amount of ports in several Transport Protocols. This flexibility is one of the features of JSTP.
 
-An Engine must be able to perform certain basic tasks of a core functionality and offer at least a minimal API for application resources to consume. The [API is described extensively in the previous section](api.md). The basic functionality that is required for Engines is described in this section, which should be taken as a reference by developers of JSTP implementations.
+_obsolete_
+
+> An Engine must be able to perform certain basic tasks of a core functionality and offer at least a minimal API for application resources to consume. The [API is described extensively in the previous section](api.md). The basic functionality that is required for Engines is described in this section, which should be taken as a reference by developers of JSTP implementations.
+
+_irrelevant_
 
 Processing
 ----------
 
-**Dispatch Processing** is the intepretation by the Engine of the directives contained in a certain JSTP Dispatch. During the Processing the Engines (in this order): 
+> **Dispatch Processing** is the intepretation by the Engine of the directives contained in a certain JSTP Dispatch. 
 
-1. Determines the syntactic correctness of the Dispatch that the Emitter provided.
-2. Determines whether or not the Dispatch is to be Forwarded, both over a network (and consequently in some of Transport Protocol) or to a Virtual Host.
-3. Identifies if the Morphology of the Dispatch is of Subscription type. That being the case, either binds or releases the provided Subscription Callback in the Subscription Context.
-4. If the Emitter provided an Answer Callback and emits immediatly a Subscription Dispatch to itself with the same Host Header as the Dispatch in process but aimed at the Answer Dispatch for the Transaction ID of this Dispatch.
-5. If there was nothing in the Host Header, triggers the Dispatch. 
+**Keep**, _useful definition_
+
+> During the Processing the Engines (in this order): 
+>
+> 1. Determines the syntactic correctness of the Dispatch that the Emitter provided.
+> 2. Determines whether or not the Dispatch is to be Forwarded, both over a network (and consequently in some of Transport Protocol) or to a Virtual Host.
+> 3. Identifies if the Morphology of the Dispatch is of Subscription type. That being the case, either binds or releases the provided Subscription Callback in the Subscription Context.
+> 4. If the Emitter provided an Answer Callback and emits immediatly a Subscription Dispatch to itself with the same Host Header as the Dispatch in process but aimed at the Answer Dispatch for the Transaction ID of this Dispatch.
+> 5. If there was nothing in the Host Header, triggers the Dispatch. 
+
+_incomplete and obsolete_
 
 #### API
 
 
 ### 1. Validation
 
-The first step is to validate the Dispatch sent by the Emitter. In strongly typed programming languages Dispatches may be already checked for compliance in the construction of the `JSTPDispatch` object; in more looosely type ones, the Engine may look for missing or malformed Headers.
+> The first step is to validate the Dispatch sent by the Emitter. 
 
-The [Syntax](syntax/index.md) section of this reference specifies data types and restrictions for each Header.
+_ok_
 
-If the validation fails the Engine must generate immediately an Answer Dispatch with the 400: Bad Dispatch Status Code. If the Dispatch comes from a Local Emitter  for the corresponding Transaction ID. The Engine must alg
+> In strongly typed programming languages Dispatches may be already checked for compliance in the construction of the `JSTPDispatch` object; in more looosely type ones, the Engine may look for missing or malformed Headers.
 
+**Improve**, _somewhat inaccurate_
 
+> The [Syntax](syntax/index.md) section of this reference specifies data types and restrictions for each Header.
 
+**As reference**, _now it is an entirely different recommendation, but validations must be linked to the protocol since the Status Codes for malformations are provided there_
 
+> If the validation fails the Engine must generate immediately an Answer Dispatch with the 400: Bad Dispatch Status Code. If the Dispatch comes from a Local Emitter  for the corresponding Transaction ID. The Engine must alg
 
-
-
-
-
-
-
-
+_obsolete. it depends_
 
 ---
 
