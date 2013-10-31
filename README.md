@@ -1,12 +1,15 @@
-JSTP/0.5 Engine 1.0
-===================
+JSTP Engine API
+===============
 
-JSTP/0.5 Engine behavior and API specification.
+> The _JSON Transfer Protocol Engine Application Programming Interface_ recommendation
 
-> This document is a draft
+The JSTP Engine is an event subscription manager for event-driven applications using the [JSON Transfer Protocol](//github/jstp/jstp-rfc).
 
-Table of Contents
+The API describes an expressive event model with endpoint patterns, [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) oriented resource operations and remote event management. 
+
+The current version of the recommendation is the [JSTP/0.6 Engine 0.1 Draft](version/0.1/index.md).
+
+All versions
 -----------------
 
-1. [Introduction](introduction.md)
-2. [API](api.md)
+1. [**JSTP/0.6 Engine 0.1 Draft**](version/0.1/index.md)—current
