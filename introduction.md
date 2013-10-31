@@ -32,7 +32,6 @@ _incomplete and obsolete_
 
 #### API
 
-
 ### 1. Validation
 
 > The first step is to validate the Dispatch sent by the Emitter. 
@@ -77,14 +76,20 @@ Answer
 
 > Important update: Subscription Dispatches get ANSWERs directly, and are not re bound with a Subscription to the corresponding ANSWER Endpoint.
 
-When an Engine process a Non-Subscription Dispatch to which the Emitter provided a Callback (or a Forwarded Dispatch with a Transaction ID), the Engine must generate and process a Subscription Dispatch to bind the Callback (or Remote Engine if it is Forwarded Dispatch) to an Endpoint for the ANSWER method and a Resource with the Transaction ID as the first item and a Wildcard as the second item.
+**Truly important**. _true story_
 
-If the Dispatch is to be forwarded, it must forward the Dispatch. If the Dispatch is to be processed locally, the Engine must keep track of each triggered Subscription, and to do that, it must:
+> When an Engine process a Regular Dispatch to which the Emitter provided a Callback, the Engine must generate and process a Subscription Dispatch to bind the Callback (or Remote Engine if it is Forwarded Dispatch) to an Endpoint for the ANSWER method and a Resource with the Transaction ID as the first item and a Wildcard as the second item.
 
-- Generate an ID (UUID, incremental ID) that is unique to each Subscription Triggering (called the "Triggering ID")
-- Assign the "Triggering ID" as the second item in the Token Header.
+**Keep**, _and improve_
 
-The callbacks should generate an Answer using both the Transaction ID and the Triggering ID. If a callback fails to provide a valid Transaction/Triggering ID pair in the Answer, the Engine must generate a 406 Not Acceptable Answer Dispatch and, if the Answer provided a callback, execute the callback with the Not Acceptable Dispatch.
+>The Engine must keep track of each triggered Subscription, and to do that, it must:
+>
+> - Generate an ID (UUID, incremental ID) that is unique to each Subscription Triggering (called the "Triggering ID")
+> - Assign the "Triggering ID" as the second item in the Token Header.
+> 
+> The callbacks should generate an Answer using both the Transaction ID and the Triggering ID. If a callback fails to provide a valid Transaction/Triggering ID pair in the Answer, the Engine must generate a 407 Not Acceptable Answer Dispatch and, if the Answer provided a callback, execute the callback with the Not Acceptable Dispatch.
+
+**Discuss**. _looks fine but..._
 
 If the callback generates more than one Answer with the Transaction/Triggering ID pair, the Engine must generate a 406 Not Acceptable Answer Dispatch for each subsequent Answer after the first one and if the Answer provided a callback, execute the callback with the Not Acceptable Dispatch.
 
