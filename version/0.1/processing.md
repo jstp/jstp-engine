@@ -10,11 +10,6 @@ Validation
 
 > All
 
-From Header Setup
------------------
-
-> All
-
 Transaction ID Setup
 --------------------
 
